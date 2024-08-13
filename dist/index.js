@@ -1,7 +1,30 @@
 "use strict";
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defineProperty(o, k2, desc);
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.isVaultUpdated = exports.updateVaultWithDetail = exports.updateVault = exports.generateSalt = exports.serializeBufferForStorage = exports.serializeBufferFromStorage = exports.keyFromPassword = exports.exportKey = exports.importKey = exports.decryptWithKey = exports.decryptWithDetail = exports.decrypt = exports.encryptWithKey = exports.encryptWithDetail = exports.encrypt = void 0;
-const utils_1 = require("@metamask/utils");
+const utils = __importStar(require("@metamask/utils"));
 const EXPORT_FORMAT = 'jwk';
 const DERIVED_KEY_FORMAT = 'AES-GCM';
 const STRING_ENCODING = 'utf-8';
@@ -314,9 +337,9 @@ exports.updateVaultWithDetail = updateVaultWithDetail;
  * @returns Whether or not the key is an `EncryptionKey`.
  */
 function isEncryptionKey(encryptionKey) {
-    return ((0, utils_1.isPlainObject)(encryptionKey) &&
-        (0, utils_1.hasProperty)(encryptionKey, 'key') &&
-        (0, utils_1.hasProperty)(encryptionKey, 'derivationOptions') &&
+    return (utils.isPlainObject(encryptionKey) &&
+        utils.hasProperty(encryptionKey, 'key') &&
+        utils.hasProperty(encryptionKey, 'derivationOptions') &&
         encryptionKey.key instanceof CryptoKey &&
         isKeyDerivationOptions(encryptionKey.derivationOptions));
 }
@@ -327,9 +350,9 @@ function isEncryptionKey(encryptionKey) {
  * @returns Whether or not the object is a `KeyDerivationOptions`.
  */
 function isKeyDerivationOptions(derivationOptions) {
-    return ((0, utils_1.isPlainObject)(derivationOptions) &&
-        (0, utils_1.hasProperty)(derivationOptions, 'algorithm') &&
-        (0, utils_1.hasProperty)(derivationOptions, 'params'));
+    return (utils.isPlainObject(derivationOptions) &&
+        utils.hasProperty(derivationOptions, 'algorithm') &&
+        utils.hasProperty(derivationOptions, 'params'));
 }
 /**
  * Checks if the provided key is an `ExportedEncryptionKey`.
@@ -338,9 +361,10 @@ function isKeyDerivationOptions(derivationOptions) {
  * @returns Whether or not the object is an `ExportedEncryptionKey`.
  */
 function isExportedEncryptionKey(exportedKey) {
-    return ((0, utils_1.isPlainObject)(exportedKey) &&
-        (0, utils_1.hasProperty)(exportedKey, 'key') &&
-        (0, utils_1.hasProperty)(exportedKey, 'derivationOptions') &&
+    console.log(utils);
+    return (utils.isPlainObject(exportedKey) &&
+        utils.hasProperty(exportedKey, 'key') &&
+        utils.hasProperty(exportedKey, 'derivationOptions') &&
         isKeyDerivationOptions(exportedKey.derivationOptions));
 }
 /**
