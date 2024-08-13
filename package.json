@@ -1,6 +1,6 @@
 {
-  "name": "@btc-vision/browser-passworder",
-  "version": "5.0.2",
+  "name": "@btc-vision/passworder",
+  "version": "1.0.0",
   "description": "A simple browserifiable module for password-encrypting JS objects.",
   "keywords": [
     "Browser",
@@ -14,7 +14,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/MetaMask/browser-passworder.git"
+    "url": "https://github.com/btc-vision/passworder.git"
   },
   "license": "ISC",
   "author": "Dan Finlay",

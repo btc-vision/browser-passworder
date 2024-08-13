@@ -5,9 +5,9 @@ __metadata:
   version: 6
   cacheKey: 8
 
-"@btc-vision/browser-passworder@workspace:.":
+"@btc-vision/passworder@workspace:.":
   version: 0.0.0-use.local
-  resolution: "@btc-vision/browser-passworder@workspace:."
+  resolution: "@btc-vision/passworder@workspace:."
   dependencies:
     "@lavamoat/allow-scripts": ^3.0.4
     "@metamask/auto-changelog": ^2.6.1
