@@ -1,5 +1,5 @@
 {
-  "name": "@metamask/browser-passworder",
+  "name": "@btc-vision/browser-passworder",
   "version": "5.0.2",
   "description": "A simple browserifiable module for password-encrypting JS objects.",
   "keywords": [
