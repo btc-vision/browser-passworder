@@ -337,6 +337,7 @@ exports.updateVaultWithDetail = updateVaultWithDetail;
  * @returns Whether or not the key is an `EncryptionKey`.
  */
 function isEncryptionKey(encryptionKey) {
+    console.log(utils);
     return (utils.isPlainObject(encryptionKey) &&
         utils.hasProperty(encryptionKey, 'key') &&
         utils.hasProperty(encryptionKey, 'derivationOptions') &&
@@ -350,6 +351,7 @@ function isEncryptionKey(encryptionKey) {
  * @returns Whether or not the object is a `KeyDerivationOptions`.
  */
 function isKeyDerivationOptions(derivationOptions) {
+    console.log(utils);
     return (utils.isPlainObject(derivationOptions) &&
         utils.hasProperty(derivationOptions, 'algorithm') &&
         utils.hasProperty(derivationOptions, 'params'));

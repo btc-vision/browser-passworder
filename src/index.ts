@@ -494,6 +494,7 @@ export async function updateVaultWithDetail(
 function isEncryptionKey(
   encryptionKey: unknown,
 ): encryptionKey is EncryptionKey {
+    console.log(utils);
   return (
     utils.isPlainObject(encryptionKey) &&
     utils.hasProperty(encryptionKey, 'key') &&
@@ -512,6 +513,7 @@ function isEncryptionKey(
 function isKeyDerivationOptions(
   derivationOptions: unknown,
 ): derivationOptions is KeyDerivationOptions {
+    console.log(utils);
   return (
       utils.isPlainObject(derivationOptions) &&
       utils.hasProperty(derivationOptions, 'algorithm') &&
