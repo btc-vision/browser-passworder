@@ -1,5 +1,3 @@
-import * as utils from '@metamask/utils';
-
 export type DetailedEncryptionResult = {
   vault: string;
   exportedKeyString: string;
@@ -53,6 +51,48 @@ const DEFAULT_DERIVATION_PARAMS: KeyDerivationOptions = {
     iterations: 900_000,
   },
 };
+
+type PlainObject = Record<number | string | symbol, unknown>;
+
+/**
+ * Checks if the provided value is a plain object.
+ *
+ * @param value - The value to check.
+ * @returns The encrypted vault.
+ */
+function isPlainObject(value: unknown): value is PlainObject {
+    if (typeof value !== 'object' || value === null) {
+        return false;
+    }
+
+    try {
+        let proto = value;
+        while (Object.getPrototypeOf(proto) !== null) {
+            proto = Object.getPrototypeOf(proto);
+        }
+
+        return Object.getPrototypeOf(value) === proto;
+    } catch (_) {
+        return false;
+    }
+}
+
+
+const utils = {
+    isPlainObject,
+    hasProperty: <
+        // eslint-disable-next-line @typescript-eslint/ban-types
+        ObjectToCheck extends Object,
+        Property extends PropertyKey,
+    >(
+        objectToCheck: ObjectToCheck,
+        name: Property,
+    ): objectToCheck is ObjectToCheck &
+        Record<
+            Property,
+            Property extends keyof ObjectToCheck ? ObjectToCheck[Property] : unknown
+        > => Object.hasOwnProperty.call(objectToCheck, name),
+}
 
 /**
  * Encrypts a data object that can be any serializable value using
@@ -494,7 +534,6 @@ export async function updateVaultWithDetail(
 function isEncryptionKey(
   encryptionKey: unknown,
 ): encryptionKey is EncryptionKey {
-    console.log(utils);
   return (
     utils.isPlainObject(encryptionKey) &&
     utils.hasProperty(encryptionKey, 'key') &&
@@ -513,7 +552,6 @@ function isEncryptionKey(
 function isKeyDerivationOptions(
   derivationOptions: unknown,
 ): derivationOptions is KeyDerivationOptions {
-    console.log(utils);
   return (
       utils.isPlainObject(derivationOptions) &&
       utils.hasProperty(derivationOptions, 'algorithm') &&
@@ -530,7 +568,6 @@ function isKeyDerivationOptions(
 function isExportedEncryptionKey(
   exportedKey: unknown,
 ): exportedKey is ExportedEncryptionKey {
-    console.log(utils);
   return (
       utils.isPlainObject(exportedKey) &&
       utils.hasProperty(exportedKey, 'key') &&
